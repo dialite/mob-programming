@@ -1,6 +1,8 @@
 // FIBONACCI SEQUENCE
 
-// QUESTION:       Given an integer 'n', find the factorial of that integer
+// QUESTION:       Given a number 'n', find the Fibonacci of that number in an array
+
+// Fibonnacci is the sum of the previous two numbers in an array.
 
 function fibonacci(n) {
   const fib = [0, 1];
@@ -9,6 +11,9 @@ function fibonacci(n) {
   }
   return fib;
 }
+
+// TIME COMPLEXITY
+// Big-O= O(n) - Squecnce due to the presence of a loop
 
 console.log(fibonacci(2)); //[0,1]
 console.log(fibonacci(3)); //[0,1,1]
