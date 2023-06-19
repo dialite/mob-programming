@@ -1,5 +1,7 @@
 // FIBONACCI SEQUENCE
 
+// QUESTION:       Given an integer 'n', find the factorial of that integer
+
 function fibonacci(n) {
   const fib = [0, 1];
   for (let i = 2; i < n; i++) {
