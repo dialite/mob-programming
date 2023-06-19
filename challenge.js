@@ -15,22 +15,38 @@
 // 2/2 = 1 (remainder 0)
 // If remainder is 0 and 'n' comes down to 1 eventually, n is a power of two
 
-function isPowerOfTwo(n) {
+// function isPowerOfTwo(n) {
+//   if (n < 1) {
+//     return false;
+//   }
+//   while (n > 1) {
+//     if (n % 2 !== 0) {
+//       return false;
+//     }
+//     n = n / 2;
+//   }
+//   return true;
+// }
+
+// // TIME COMPLEXITY
+// // Big-O : O(logn) - Size reduces by half every iteration
+
+// console.log(isPowerOfTwo(1)); // true
+// console.log(isPowerOfTwo(2)); // true
+// console.log(isPowerOfTwo(5)); // false
+
+// USING A MORE EFFICIENT WAY WITH BITWISE OPERATION
+
+function isPowerOfTwoBitWise(n) {
   if (n < 1) {
     return false;
   }
-  while (n > 1) {
-    if (n % 2 !== 0) {
-      return false;
-    }
-    n = n / 2;
-  }
-  return true;
+  return (n & (n - 1)) === 0;
 }
 
 // TIME COMPLEXITY
-// Big-O : O(logn) - Size reduces by half every iteration
+// Big-O : O(1) - constant
 
-console.log(isPowerOfTwo(1)); // true
-console.log(isPowerOfTwo(2)); // true
-console.log(isPowerOfTwo(5)); // false
+console.log(isPowerOfTwoBitWise(1)); // true
+console.log(isPowerOfTwoBitWise(2)); // true
+console.log(isPowerOfTwoBitWise(5)); // false
