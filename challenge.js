@@ -1,34 +1,37 @@
-// RECURSIVE FIBONACCI SEQUENCE
+// RECURSIVE FACTORIAL OF A NUMBER
 
-// QUESTION:       Given a number 'n', find the n^th element of the Fibonacci sequence.
+// QUESTION:       Given a integer 'n', find the factorial of that integer.
 
 // Note: A Fibonacci sequence is a sequence in which each number is the sum of the two preceding ones.
-// recursiveFibonacci(0) = 0
-// recursiveFibonacci(1) = 1
-// recursiveFibonacci(6) = 8
+// recursiveFactorial(0) = 1
+// recursiveFactorial(3) = 6
+// recursiveFibonacci(4) = 24
 
 // PSEUDOCODE
-// N = 8
-
-// 6, 7  =  8
-// 4, 5 = 6 and 5, 6 = 7
-// 2, 3 = 4   3, 4 = 5   5, 4 = 5   4, 5 = 6
+// n = 5  =  5*4*3*2*1  = 5 * 4!   =   120
+// n = 4  =  4*3*2*1  =  4 * 3! =  24
+// n = 3  =  3*2*1  =  3 * 2!  =  6                                 n!= n*(n-1)!
+// n = 2  =  2*1  =  2 * 1!  =  2
+// n = 1  =  1  =  1 * 0! = 1
+// n = 0  =  1
 
 // THEREFORE
 // Fn = F(n - 1) + F(n - 2);
 // F(0) = 0 and F(1) = 1    ---- Base case
 // F(2) = F(1) + F(0)
 
-function recursiveFibonacci(n) {
-  if (n < 2) {
-    return n;
+function recursiveFactorial(n) {
+  // n! = n * (n - 1)!
+  if (n === 0) {
+    //Base case
+    return 1;
   }
-  return recursiveFibonacci(n - 1) + recursiveFibonacci(n - 2);
+  return n * recursiveFactorial(n - 1);
 }
 
 // TIME COMPLEXITY
-// Big-O : O(2^n) - It is 2 raise to the power of n
+// Big-O : O(n) - It is Linear because the higher n is, the more the number of instructions executed of n
 
-console.log(recursiveFibonacci(0)); // 1
-console.log(recursiveFibonacci(1)); // 1
-console.log(recursiveFibonacci(6)); // 8
+console.log(recursiveFactorial(0)); // 1
+console.log(recursiveFactorial(3)); // 6
+console.log(recursiveFactorial(5)); // 120
