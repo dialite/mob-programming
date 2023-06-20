@@ -1,35 +1,40 @@
-// LINEAR SEARCH
+// BINARY SEARCH
 
-// QUESTION:       Given an array of 'n' and a target element 't', find the index of 't' in the array. Return -1 if the target element is not found.
+// QUESTION:       Given a sorted array of 'n' elements and a target element 't', find the index of 't' in the array. Return -1 if the target element is not found.
 
-// Note: A Fibonacci sequence is a sequence in which each number is the sum of the two preceding ones.
-// recursiveFactorial(0) = 1
-// recursiveFactorial(3) = 6
-// recursiveFibonacci(4) = 24
+// Note: Binary search only works for sorted arrays. You are sort then apply search for unsorted arrys.
 
 // PSEUDOCODE
-// Start at the first element of the array and move towards the last.
-// At each element though, check if the element is equal to the target element.
-// If element found, return the index of the element
-// If element not found, return -1
+// If the array is empty reurn -1 as the element cannot be found
+// If the array hass ElementInternals, find the middle element in the array. If the target is equal to the middle element, return the middle element index.
+// If target is less than the middle Element, binary search left half of the array.
+// If target is greater than the middle Element, binary search right half of the array.
 
 // THEREFORE
-// arr = [-5, 2, 10, 4, 6], t = 10  =  should return 2
-// arr = [-5, 2, 10, 4, 6], t = 6  =  should return 4
-// arr = [-5, 2, 10, 4, 6], t = 20  =  should return -1
+// sortedArr = [-5, 2, 4, 6, 10], t = 10  =  should return 4
+// sortedArr = [-5, 2, 4, 6, 10], t = 6  =  should return 3
+// sortedArr = [-5, 2, 4, 6, 10], t = 20  =  should return -1
 
-function linearSearch(arr, target) {
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === target) {
-      return i;
+function binarySearch(arr, target) {
+  let leftIndex = 0;
+  let rightIndex = arr.length - 1;
+
+  while (leftIndex <= rightIndex) {
+    let middleIndex = Math.floor((leftIndex + rightIndex) / 2);
+    if (arr[middleIndex] === target) {
+      return middleIndex;
     }
+    if (target < arr[middleIndex]) {
+      rightIndex = middleIndex - 1;
+    }
+    leftIndex = middleIndex + 1;
   }
   return -1;
 }
 
 // TIME COMPLEXITY
-// Big-O : O(n) - It is Linear time complexity because it has one loop
+// Big-O : O(logn) - It is Linear time complexity because it has one loop
 
-console.log(linearSearch([-5, 2, 10, 4, 6], 10)); // 2
-console.log(linearSearch([-5, 2, 10, 4, 6], 6)); // 4
-console.log(linearSearch([-5, 2, 10, 4, 6], 20)); // -1
+console.log(binarySearch([-5, 2, 4, 6, 10], 10)); // 4
+console.log(binarySearch([-5, 2, 4, 6, 10], 6)); // 3
+console.log(binarySearch([-5, 2, 4, 6, 10], 20)); // -1
