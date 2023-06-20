@@ -1,52 +1,34 @@
-// POWER OF TWO
+// RECURSIVE FIBONACCI SEQUENCE
 
-// QUESTION:       Given a natural number 'n', determine if the number is a pOWER OF 2 or not
+// QUESTION:       Given a number 'n', find the n^th element of the Fibonacci sequence.
 
-// Note: An integer is a power of two if there exists an integer 'x' such that 'n' === 2^x.
-// isPowerOfTwo(1) = true (2^0)
-// isPowerOfTwo(2) = true (2^1)
-// isPowerOfTwo(5) = false
+// Note: A Fibonacci sequence is a sequence in which each number is the sum of the two preceding ones.
+// recursiveFibonacci(0) = 0
+// recursiveFibonacci(1) = 1
+// recursiveFibonacci(6) = 8
 
 // PSEUDOCODE
 // N = 8
 
-// 8/2 = 4 (remainder 0)
-// 4/2 = 2 (remainder 0)
-// 2/2 = 1 (remainder 0)
-// If remainder is 0 and 'n' comes down to 1 eventually, n is a power of two
+// 6, 7  =  8
+// 4, 5 = 6 and 5, 6 = 7
+// 2, 3 = 4   3, 4 = 5   5, 4 = 5   4, 5 = 6
 
-// function isPowerOfTwo(n) {
-//   if (n < 1) {
-//     return false;
-//   }
-//   while (n > 1) {
-//     if (n % 2 !== 0) {
-//       return false;
-//     }
-//     n = n / 2;
-//   }
-//   return true;
-// }
+// THEREFORE
+// Fn = F(n - 1) + F(n - 2);
+// F(0) = 0 and F(1) = 1    ---- Base case
+// F(2) = F(1) + F(0)
 
-// // TIME COMPLEXITY
-// // Big-O : O(logn) - Size reduces by half every iteration
-
-// console.log(isPowerOfTwo(1)); // true
-// console.log(isPowerOfTwo(2)); // true
-// console.log(isPowerOfTwo(5)); // false
-
-// USING A MORE EFFICIENT WAY WITH BITWISE OPERATION
-
-function isPowerOfTwoBitWise(n) {
-  if (n < 1) {
-    return false;
+function recursiveFibonacci(n) {
+  if (n < 2) {
+    return n;
   }
-  return (n & (n - 1)) === 0;
+  return recursiveFibonacci(n - 1) + recursiveFibonacci(n - 2);
 }
 
 // TIME COMPLEXITY
-// Big-O : O(1) - constant
+// Big-O : O(2^n) - It is 2 raise to the power of n
 
-console.log(isPowerOfTwoBitWise(1)); // true
-console.log(isPowerOfTwoBitWise(2)); // true
-console.log(isPowerOfTwoBitWise(5)); // false
+console.log(recursiveFibonacci(0)); // 1
+console.log(recursiveFibonacci(1)); // 1
+console.log(recursiveFibonacci(6)); // 8
