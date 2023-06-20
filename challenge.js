@@ -34,7 +34,7 @@ function bubbleSort(arr) {
 }
 
 // TIME COMPLEXITY
-// Big-O : O(logn) - It is Logrithmic time complexity because the loop halves after each iteration
+// Big-O : O(n^2) - It is Quadratic time complexity because there are two loops
 
 const arr = [8, 20, -2, 4, -6];
 bubbleSort(arr);
