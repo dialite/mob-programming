@@ -33,7 +33,7 @@ function binarySearch(arr, target) {
 }
 
 // TIME COMPLEXITY
-// Big-O : O(logn) - It is Linear time complexity because it has one loop
+// Big-O : O(logn) - It is Logrithmic time complexity because the loop halves after each iteration
 
 console.log(binarySearch([-5, 2, 4, 6, 10], 10)); // 4
 console.log(binarySearch([-5, 2, 4, 6, 10], 6)); // 3
