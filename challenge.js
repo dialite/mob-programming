@@ -1,12 +1,11 @@
 // MERGE SORT
 
-// QUESTION:       Given an array of integers, sort the array.
+// QUESTION:       Given two finite non-empty sets, find the Cartesian Product.
 
-// Note:
+// NOTE:
 
-// 1) Divide the array into sub arrays, each containing only one element (An array with one element is considered sorted).
-
-// 2) Repeatedly merge the sub arrays to produce new sorted sub arrays until there is only one sub array remaining. That will be the sorted array.
+// In mathematics, specifically set theory, the Cartesian product of two sets of A and B, denoted A x B,
+// is the set of all ordered pairs (a, b) where a is in A and b is in B
 
 // PSEUDOCODE
 
