@@ -1,11 +1,14 @@
-// BUBBLE SORT
+// INSERTION SORT
 
 // QUESTION:       Given an array of integers, sort the array.
 
-// Note: In bubble sort, you compare adjacent elements in the array and swap the positions if they are not in the intended order.
-// It checks after each iteration if there was a swap. If yes, it will then go over the array until an iteration when there is no swap.
-// The highest number is takien to the top, that is why it is called bubble sort.
-// Bubble sort is a poor sorting method and only used during interviews and few other reasons.
+// Note: In insertion sort, virtually split the array into a sorted and an unsorted part.
+// Assume that the first element is already sorted and remaining elements are unsorted.
+// Select an unsorted element and compare with all elements in the sorted part.
+// If the elements in the sorted part is smaller than the selected element, proceed to the next element in the unsorted part.
+// Else, shift larger elements in the sorted part towards the right.
+// Insert the selected element at the right index.
+// Repeat till all the unsorted elements are placed in the right order.
 
 // PSEUDOCODE
 
@@ -18,24 +21,21 @@
 // sortedArr = [-5, 2, 4, 6, 10], t = 6  =  should return 3
 // sortedArr = [-5, 2, 4, 6, 10], t = 20  =  should return -1
 
-function bubbleSort(arr) {
-  let sorted;
-  do {
-    sorted = false;
-    for (let i = 0; i < arr.length - 1; i++) {
-      if (arr[i] > arr[i + 1]) {
-        let temp = arr[i];
-        arr[i] = arr[i + 1];
-        arr[i + 1] = temp;
-        sorted = true;
-      }
+function insertionSort(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    let numberToInsert = arr[i];
+    let j = i - 1; //'j' is the index of the sorted element
+    while (j >= 0 && arr[j] > numberToInsert) {
+      arr[j + 1] = arr[j];
+      j--;
     }
-  } while (sorted);
+    arr[j + 1] = numberToInsert;
+  }
 }
 
 // TIME COMPLEXITY
 // Big-O : O(n^2) - It is Quadratic time complexity because there are two loops
 
 const arr = [8, 20, -2, 4, -6];
-bubbleSort(arr);
+insertionSort(arr);
 console.log(arr); // [-6, -2, 4, 8, 20]
