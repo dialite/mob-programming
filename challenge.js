@@ -1,22 +1,25 @@
-class Stack {
+class Queue {
   constructor() {
     this.items = [];
   }
 
-  push(element) {
+  enqueue(element) {
     this.items.push(element);
   }
 
-  pop() {
-    return this.items.pop();
-  }
-
-  peek() {
-    return this.items[this.items.length - 1];
+  dequeue() {
+    return this.items.shift();
   }
 
   isEmpty() {
     return this.items.length === 0;
+  }
+
+  peek() {
+    if (!this.isEmpty()) {
+      return this.items[0];
+    }
+    return null;
   }
 
   size() {
@@ -28,14 +31,17 @@ class Stack {
   }
 }
 
-const stack = new Stack();
+const queue = new Queue();
 
-console.log(stack.isEmpty());
+console.log(queue.isEmpty());
 
-stack.push(20);
-stack.push(10);
-stack.push(30);
-console.log(stack.size());
-stack.print();
-console.log(stack.pop());
-console.log(stack.peek());
+queue.enqueue(10);
+queue.enqueue(20);
+queue.enqueue(30);
+
+console.log(queue.size());
+
+queue.print();
+
+console.log(queue.dequeue());
+console.log(queue.peek());
