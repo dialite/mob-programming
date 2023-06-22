@@ -1,35 +1,26 @@
-// CLIMBING STAIRCASE
+// TOWER OF HANOI
 
 // QUESTION:       Given a staircase of 'n' steps, count the number of distinct ways to climb to the top. You can either climb 1 step or 2 steps at a time
 
 // NOTE:
 
-// n=1, climbingStaircase(1) = 1                   | (1)
-// n=1, climbingStaircase(2) = 2                   | (1, 1) and (2)
-// n=1, climbingStaircase(3) = 3                   | (1,1,1) (1,2) and (2,1)
-// n=1, climbingStaircase(5) = 5                   | (1,1,1,1) (1,1,2) (1,2,1) (2,1,1) and (2,2)
-
 // PSEUDOCODE
-// At any given TimeRanges, you can climb either 1 step or 2 steps
-// If you have to climb to step 'n', we can only climb from step 'n-1' or 'n-2'
-// Calculate the ways we can climb to 'n-1' and 'n-2' steps and add the two
+// Shift 'n-1' disks from 'A' to 'B', using 'C' (when required)
+// Shift last disk from 'A' to 'C'
+// Shift 'n-1' disks from 'B' to 'C', using 'A' (when required)
 
-// climbingStaircase(n) = climbingStaircase(n-1) + climbingStaircase(n-2)
-
-function climbingStaircase(n) {
-  const noOfWays = [1, 2];
-
-  for (let i = 2; i <= n; i++) {
-    noOfWays[i] = noOfWays[i - 1] + noOfWays[i - 2];
+function towerOfHanoi(n, fromRod, toRod, usingRod) {
+  // Base case
+  if (n === 1) {
+    console.log(`Move disk 1 from ${fromRod} to ${toRod}`);
+    return;
   }
-  return noOfWays[n - 1];
+
+  towerOfHanoi(n - 1, fromRod, usingRod, toRod);
+  console.log(`Move disk ${n} from ${fromRod} to ${toRod}`);
+
+  towerOfHanoi(n - 1, usingRod, toRod, fromRod);
 }
 // TIME COMPLEXITY
-// WORST CASE  :   O(n)  - Linear time complexity
-
-console.log(climbingStaircase(1));
-console.log(climbingStaircase(2));
-console.log(climbingStaircase(3));
-console.log(climbingStaircase(4));
-console.log(climbingStaircase(5));
-console.log(climbingStaircase(6));
+// BigO Notation:  O(2^n - 1) approximately  O(2^n) due to the increase in the output. 1 gives 1 result, 2 gives 3 result, 3 gives 7 result, etc.
+towerOfHanoi(3, "A", "C", "B");
