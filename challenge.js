@@ -1,26 +1,20 @@
-// TOWER OF HANOI
+// Bruce force - Simple and exhaustive technique that evaluates every possible outcome to find the best solution. Example: Linear search
 
-// QUESTION:       Given a staircase of 'n' steps, count the number of distinct ways to climb to the top. You can either climb 1 step or 2 steps at a time
+// Greedy - Choose the best option at the current time, without any consideration for the future. Example: Dijkstras algorithm, Prims algorithm and Kruskals algorithm
 
-// NOTE:
+// Divide and Conquer - Divide the problem into smaller sub-problems. Each sub-problem is then solved and the partial solutions are recombined to determine the overaall
+// solution. Example : Binary Search, Quick Sort, Merge Sort and Tower of Hanoi.
 
-// PSEUDOCODE
-// Shift 'n-1' disks from 'A' to 'B', using 'C' (when required)
-// Shift last disk from 'A' to 'C'
-// Shift 'n-1' disks from 'B' to 'C', using 'A' (when required)
+// Dynamic Programming - Divide the problem into smaller sub-problems. Break it down into smaller but overlapping sub problems. Store the result and reuse
+// it for the same sub-problems. This is called memoization and is a optimization technique that improves the time complexity of your algorithm. Example Fibinacci numbers and climbing staircase.
 
-function towerOfHanoi(n, fromRod, toRod, usingRod) {
-  // Base case
-  if (n === 1) {
-    console.log(`Move disk 1 from ${fromRod} to ${toRod}`);
-    return;
-  }
+// Backtracking - Generate all possible solutions. Check if the solution satifies all the given constrians and only then you proceed with generating
+// subsequent solutions. If the constraints are not satisfied, backtrack and go on a different path to find the solutiuon. Example: N-Queens problem.
 
-  towerOfHanoi(n - 1, fromRod, usingRod, toRod);
-  console.log(`Move disk ${n} from ${fromRod} to ${toRod}`);
+// NEXT STEPS
 
-  towerOfHanoi(n - 1, usingRod, toRod, fromRod);
-}
-// TIME COMPLEXITY
-// BigO Notation:  O(2^n - 1) approximately  O(2^n) due to the increase in the output. 1 gives 1 result, 2 gives 3 result, 3 gives 7 result, etc.
-towerOfHanoi(3, "A", "C", "B");
+Solve more problems
+  - Finding the GCD using Euclidian algorithm
+  - Finding permutations and combinations of a list of numbers
+  - Finding the longest common substring in a given string
+  - Knapsack problem
