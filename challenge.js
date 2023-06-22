@@ -1,20 +1,41 @@
-// Bruce force - Simple and exhaustive technique that evaluates every possible outcome to find the best solution. Example: Linear search
+class Stack {
+  constructor() {
+    this.items = [];
+  }
 
-// Greedy - Choose the best option at the current time, without any consideration for the future. Example: Dijkstras algorithm, Prims algorithm and Kruskals algorithm
+  push(element) {
+    this.items.push(element);
+  }
 
-// Divide and Conquer - Divide the problem into smaller sub-problems. Each sub-problem is then solved and the partial solutions are recombined to determine the overaall
-// solution. Example : Binary Search, Quick Sort, Merge Sort and Tower of Hanoi.
+  pop() {
+    return this.items.pop();
+  }
 
-// Dynamic Programming - Divide the problem into smaller sub-problems. Break it down into smaller but overlapping sub problems. Store the result and reuse
-// it for the same sub-problems. This is called memoization and is a optimization technique that improves the time complexity of your algorithm. Example Fibinacci numbers and climbing staircase.
+  peek() {
+    return this.items[this.items.length - 1];
+  }
 
-// Backtracking - Generate all possible solutions. Check if the solution satifies all the given constrians and only then you proceed with generating
-// subsequent solutions. If the constraints are not satisfied, backtrack and go on a different path to find the solutiuon. Example: N-Queens problem.
+  isEmpty() {
+    return this.items.length === 0;
+  }
 
-// NEXT STEPS
+  size() {
+    return this.items.length;
+  }
 
-Solve more problems
-  - Finding the GCD using Euclidian algorithm
-  - Finding permutations and combinations of a list of numbers
-  - Finding the longest common substring in a given string
-  - Knapsack problem
+  print() {
+    console.log(this.items.toString());
+  }
+}
+
+const stack = new Stack();
+
+console.log(stack.isEmpty());
+
+stack.push(20);
+stack.push(10);
+stack.push(30);
+console.log(stack.size());
+stack.print();
+console.log(stack.pop());
+console.log(stack.peek());
