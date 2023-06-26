@@ -1,43 +1,46 @@
 const LinkedList = require("./linked-list");
 
-class LinkedListStack {
+class LinkedListQueue {
   constructor() {
-    this.List = new LinkedList();
+    this.list = new LinkedList();
   }
 
-  push(value) {
-    this.List.prepend(value);
+  enqueue(value) {
+    this.list.append(value);
   }
 
-  pop() {
-    return this.List.removeFromFront();
+  dequeue() {
+    return this.list.removeFromFront();
   }
 
   peek() {
-    return this.List.head.value;
+    return this.list.head.value;
   }
 
   isEmpty() {
-    return this.List.isEmpty();
+    return this.list.isEmpty();
   }
 
   getSize() {
-    return this.List.getSize();
+    return this.list.getSize();
   }
 
   print() {
-    this.List.print();
+    return this.list.print();
   }
 }
 
-const stack = new LinkedListStack();
-console.log(stack.isEmpty());
+const queue = new LinkedListQueue();
+console.log(queue.isEmpty());
 
-stack.push(20);
-stack.push(10);
-stack.push(30);
-console.log(stack.getSize());
-stack.print();
+queue.enqueue(10);
+queue.enqueue(20);
+queue.enqueue(30);
+queue.enqueue(40);
+console.log(queue.getSize());
+queue.print();
 
-console.log(stack.pop());
-console.log(stack.peek());
+console.log(queue.dequeue());
+queue.print();
+
+console.log(queue.peek());
