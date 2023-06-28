@@ -1,46 +1,91 @@
-const LinkedList = require("./linked-list");
-
-class LinkedListQueue {
-  constructor() {
-    this.list = new LinkedList();
+class HashTable {
+  constructor(size) {
+    this.table = new Array(size);
+    this.size = size;
   }
 
-  enqueue(value) {
-    this.list.append(value);
+  hash(key) {
+    let total = 0;
+    for (let i = 0; i < key.length; i++) {
+      total += key.charCodeAt(i);
+    }
+    return total % this.size;
   }
 
-  dequeue() {
-    return this.list.removeFromFront();
+  set(key, value) {
+    const index = this.hash(key);
+    this.table[index] = value;
   }
 
-  peek() {
-    return this.list.head.value;
+  get(key) {
+    const index = this.hash(key);
+    return this.table[index];
   }
 
-  isEmpty() {
-    return this.list.isEmpty();
+  remove(key) {
+    const index = this.hash(key);
+    return (this.table[index] = undefined);
   }
 
-  getSize() {
-    return this.list.getSize();
-  }
-
-  print() {
-    return this.list.print();
+  display() {
+    for (let i = 0; i < this.table.length; i++) {
+      if (this.table[i]) {
+        console.log(i, this.table[i]);
+      }
+    }
   }
 }
 
-const queue = new LinkedListQueue();
-console.log(queue.isEmpty());
+const table = new HashTable(50);
 
-queue.enqueue(10);
-queue.enqueue(20);
-queue.enqueue(30);
-queue.enqueue(40);
-console.log(queue.getSize());
-queue.print();
+table.set("name", "Bruce");
+table.set("age", 25);
+table.display();
 
-console.log(queue.dequeue());
-queue.print();
+console.log(table.get("name"));
 
-console.log(queue.peek());
+// table.remove("name");
+// table.display();
+
+table.set("view", "Clark");
+table.display();
+
+// class HasshTable {
+//   constructor(size) {
+//     this.table = new Array(size);
+//     this.size = size;
+//   }
+
+//   hash(key) {
+//     let total = 0;
+//     for (let i = 0; i < key.length; i++) {
+//       total += key.charCodeAt(i);
+//     }
+//     return total % this.size;
+//   }
+
+//   set(key, value) {
+//     const index = this.hash(key);
+//     this.table[index] = value;
+//   }
+
+//   get(key) {
+//     const index = this.hash(key);
+//     return this.table[index];
+//   }
+
+//   remove(key) {
+//     const index = this.table(key);
+//     this.table[index] = undefined;
+//   }
+
+//   display() {
+//     for (let i = 0; i < this.table.length; i++) {
+//       if (this.table[i]) {
+//         console.log(i, this.table[i]);
+//       }
+//     }
+//   }
+// }
+
+// const table = new HasshTable(50);
