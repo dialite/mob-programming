@@ -14,17 +14,43 @@ class HashTable {
 
   set(key, value) {
     const index = this.hash(key);
-    this.table[index] = value;
+    // this.table[index] = value;
+    const bucket = this.table[index];
+    if (!bucket) {
+      this.table[index] = [[key, value]];
+    } else {
+      const sameKeyItem = bucket.find((item) => item[0] === key);
+      if (sameKeyItem) {
+        sameKeyItem[1] = value;
+      } else {
+        bucket.push([key, value]);
+      }
+    }
   }
 
   get(key) {
     const index = this.hash(key);
-    return this.table[index];
+    // return this.table[index];
+    const bucket = this.table[index];
+    if (bucket) {
+      const sameKeyItem = bucket.find((item) => item[0] === key);
+      if (sameKeyItem) {
+        return sameKeyItem[1];
+      }
+    }
+    return undefined;
   }
 
   remove(key) {
     const index = this.hash(key);
-    return (this.table[index] = undefined);
+    // return (this.table[index] = undefined);
+    const bucket = this.table[index];
+    if (bucket) {
+      const sameKeyItem = bucket.find((item) => item[0] === key);
+      if (sameKeyItem) {
+        bucket.splice(bucket.indexOf(sameKeyItem), 1);
+      }
+    }
   }
 
   display() {
@@ -47,8 +73,11 @@ console.log(table.get("name"));
 // table.remove("name");
 // table.display();
 
-table.set("view", "Clark");
+table.set("mane", "Clark");
+table.set("mane", "Diana");
 table.display();
+
+// NOTE:      AVERAGE TIME COMPLEXITY IS CONSTANT -- O(1)
 
 // class HasshTable {
 //   constructor(size) {
