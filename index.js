@@ -1,120 +1,68 @@
-class HashTable {
-  constructor(size) {
-    this.table = new Array(size);
-    this.size = size;
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+class BinarySearchTree {
+  constructor() {
+    this.root = null;
   }
 
-  hash(key) {
-    let total = 0;
-    for (let i = 0; i < key.length; i++) {
-      total += key.charCodeAt(i);
-    }
-    return total % this.size;
+  isEmpty() {
+    return this.root === null;
   }
 
-  set(key, value) {
-    const index = this.hash(key);
-    // this.table[index] = value;
-    const bucket = this.table[index];
-    if (!bucket) {
-      this.table[index] = [[key, value]];
+  insert(value) {
+    const newNode = new Node(value);
+    if (this.isEmpty()) {
+      this.root = newNode;
     } else {
-      const sameKeyItem = bucket.find((item) => item[0] === key);
-      if (sameKeyItem) {
-        sameKeyItem[1] = value;
+      this.insertNode(this.root, newNode);
+    }
+  }
+
+  insertNode(root, newNode) {
+    if (newNode.value < root.value) {
+      if (root.left === null) {
+        root.left = newNode;
       } else {
-        bucket.push([key, value]);
+        this.insertNode(root.left, newNode);
+      }
+    } else {
+      if (root.right === null) {
+        root.right = newNode;
+      } else {
+        this.insertNode(root.right, newNode);
       }
     }
   }
 
-  get(key) {
-    const index = this.hash(key);
-    // return this.table[index];
-    const bucket = this.table[index];
-    if (bucket) {
-      const sameKeyItem = bucket.find((item) => item[0] === key);
-      if (sameKeyItem) {
-        return sameKeyItem[1];
-      }
-    }
-    return undefined;
-  }
-
-  remove(key) {
-    const index = this.hash(key);
-    // return (this.table[index] = undefined);
-    const bucket = this.table[index];
-    if (bucket) {
-      const sameKeyItem = bucket.find((item) => item[0] === key);
-      if (sameKeyItem) {
-        bucket.splice(bucket.indexOf(sameKeyItem), 1);
-      }
-    }
-  }
-
-  display() {
-    for (let i = 0; i < this.table.length; i++) {
-      if (this.table[i]) {
-        console.log(i, this.table[i]);
+  search(root, value) {
+    if (!root) {
+      return false;
+    } else {
+      if (root.value === value) {
+        return true;
+      } else if (value < root.value) {
+        return this.search(root.left, value);
+      } else {
+        return this.search(root.right, value);
       }
     }
   }
 }
 
-const table = new HashTable(50);
+const bst = new BinarySearchTree();
+console.log("Tree is empty?", bst.isEmpty());
 
-table.set("name", "Bruce");
-table.set("age", 25);
-table.display();
+bst.insert(10);
+bst.insert(5);
+bst.insert(15);
 
-console.log(table.get("name"));
-
-// table.remove("name");
-// table.display();
-
-table.set("mane", "Clark");
-table.set("mane", "Diana");
-table.display();
-
-// NOTE:      AVERAGE TIME COMPLEXITY IS CONSTANT -- O(1)
-
-// class HasshTable {
-//   constructor(size) {
-//     this.table = new Array(size);
-//     this.size = size;
-//   }
-
-//   hash(key) {
-//     let total = 0;
-//     for (let i = 0; i < key.length; i++) {
-//       total += key.charCodeAt(i);
-//     }
-//     return total % this.size;
-//   }
-
-//   set(key, value) {
-//     const index = this.hash(key);
-//     this.table[index] = value;
-//   }
-
-//   get(key) {
-//     const index = this.hash(key);
-//     return this.table[index];
-//   }
-
-//   remove(key) {
-//     const index = this.table(key);
-//     this.table[index] = undefined;
-//   }
-
-//   display() {
-//     for (let i = 0; i < this.table.length; i++) {
-//       if (this.table[i]) {
-//         console.log(i, this.table[i]);
-//       }
-//     }
-//   }
-// }
-
-// const table = new HasshTable(50);
+console.log(bst.search(bst.root, 10));
+console.log(bst.search(bst.root, 5));
+console.log(bst.search(bst.root, 15));
+console.log(bst.search(bst.root, 20));
